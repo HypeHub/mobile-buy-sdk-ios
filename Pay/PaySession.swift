@@ -170,11 +170,11 @@ public class PaySession: NSObject {
     /// Apple Pay dialog. The `delegate` will then be called when the user
     /// begins changing billing address, shipping address, and shipping rates.
     ///
-    public func authorize() {
+    public func authorize(completion: ((Bool) -> Void)? = nil) {
         let paymentRequest  = self.paymentRequestUsing(self.checkout, currency: self.currency, merchantID: self.merchantID)
         let controller      = self.controllerType.init(paymentRequest: paymentRequest)
         controller.delegate = self
-        controller.present(completion: nil)
+        controller.present(completion: completion)
     }
 
     // ----------------------------------
